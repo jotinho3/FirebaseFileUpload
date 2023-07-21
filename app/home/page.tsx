@@ -14,13 +14,7 @@ import { auth } from '@/database/firebase';
 import ImgGrid from './components/imgGrid';
 
 
-export function SignOut() {
-    return (
-      auth.currentUser && (
-        <button onClick={() => auth.signOut()}>Sign Out!</button>
-      )
-    );
-  }
+
 
 export default function Home() {
 
@@ -42,7 +36,7 @@ export default function Home() {
             <ImageUploader onUploadSuccess={handleUploadSuccess}/>
             <ImgGrid onUploadSuccess={uploadSuccess}/>
             
-            <SignOut />
+          
         </div>
 
     )

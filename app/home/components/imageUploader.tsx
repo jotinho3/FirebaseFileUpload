@@ -22,13 +22,18 @@ interface ImageUploaderProps {
         setSelectedFile(uploadedfile);
       }
     };
+
   
     const handleUpload = async () => {
       if (!selectedFile) return;
   
       try {
         console.log('Starting upload...');
-        const snapshot = await uploadBytes(ref(storageRef, selectedFile.name), selectedFile);
+        const snapshot = await uploadBytes(ref(storageRef, selectedFile.name), selectedFile, {
+          customMetadata: {
+            owner: auth.currentUser?.uid || 'unknown', // Store the user's UID in the metadata
+          },
+        });
         console.log('Upload completed.');
         const downloadURL = await getDownloadURL(snapshot.ref);
         setImageURL(downloadURL);
