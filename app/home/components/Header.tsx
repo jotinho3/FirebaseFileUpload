@@ -7,6 +7,10 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import Swal from 'sweetalert2';
 
 
+import mainIcon from '../../../assets/add_photo_alternate_outlined.png'
+import Image from 'next/image';
+
+
 
 
 
@@ -43,9 +47,11 @@ const Header: React.FC = () => {
     
   
     return (
-      <header className="flex items-center justify-between py-4 px-8 bg-gray-900 text-white">
+      <header className="flex items-center justify-between py-4 px-8 bg-red-800 text-white">
         <div className="flex items-center">
-          <h1 className="ml-2 text-xl font-bold">Image Uploader</h1>
+      <Image src={mainIcon} alt='main icon' />
+          <h1 className="ml-2 text-xl font-bold"> Image Uploader</h1>
+          
         </div>
         {user && (
           <div className="flex items-center">

@@ -10,9 +10,12 @@ interface AppLayoutProps {
 export default function AppLayout({children}: AppLayoutProps) {
     return (
         <div>
-            <Header />
+            <Header  />
             <h1>Home Layout</h1>
-            {children}
+            <div className="w-2/3 m-auto ">
+               {children}
+            </div>
+            
             
             
         </div>

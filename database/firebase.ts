@@ -4,6 +4,9 @@ import { initializeApp } from 'firebase/app';
 import { getStorage, ref  } from 'firebase/storage';
 import { getAuth } from 'firebase/auth';
 
+require('dotenv').config();
+
+
 // Initialize Firebase
 export const app = initializeApp({
     apiKey: "AIzaSyAjdxicLYmDmPiCy1FH3dOYBB0NgunI-EQ",

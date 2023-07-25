@@ -64,11 +64,13 @@ const ImgGrid: React.FC<ImgGridProps> = ({ onUploadSuccess }) => {
         title: 'Are you sure?',
         text: 'You will not be able to recover this image!',
         icon: 'warning',
+        color: 'white',
+        padding: '3rem',
         showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3377dd',
         confirmButtonText: 'Yes, delete it!',
-        background: '#000'
+        background: 'rgb(8, 47, 73)'
       });
 
       if (shouldDelete.isConfirmed) {
@@ -100,7 +102,7 @@ const ImgGrid: React.FC<ImgGridProps> = ({ onUploadSuccess }) => {
   };
   
   return (
-    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
+    <div className='mt-24' style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)' , gridTemplateRows: 'repeat(3, 1fr)', columnGap: '25px', rowGap:  '25px' }}>
       <AnimatePresence>
       {isLoading && !isFetched ? (
         // Show skeleton loader while fetching
@@ -123,19 +125,14 @@ const ImgGrid: React.FC<ImgGridProps> = ({ onUploadSuccess }) => {
             <img
               src={url}
               alt="Uploaded"
-              style={{ maxWidth: '300px', cursor: 'pointer' }}
+              style={{ maxWidth: '350px', maxHeight: '400px' ,minWidth: '300px' }}
+              className='rounded-ss-2xl border-spacing-2.5'
             />
 
                <div
-               
-                style={{
-                  position: 'absolute',
-                  top: '5px',
-                  right: '5px',
-                  cursor: 'pointer',
-                }}
-              >
-                <Trash size={24} color="blue" onClick={() => handleImageClick(url)} />
+               className='absolute top-1 right-1 cursor-pointer bg-red-700 hover:bg-red-600 rounded-full p-4 '
+                >
+                <Trash size={24} color="white" onClick={() => handleImageClick(url)} />
               </div>
 
             
