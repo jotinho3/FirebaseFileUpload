@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import firebase from 'firebase/app';
 import 'firebase/storage';
 import ImageUploader from './components/imageUploader';
@@ -27,15 +27,18 @@ export default function Home() {
     const router = useRouter();
     const [uploadSuccess, setUploadSuccess] = useState(0);
 
+    useEffect(() => {
+      // Redirect the user to the '/signin' route if not logged in
+      if (loading || !user) {
+        router.push('/signin');
+      }
+    }, [loading, user, router]);
+
     const handleUploadSuccess = () => {
         setUploadSuccess(state => state + 1); // Update the state to trigger the ImgGrid refresh
       };
 
-    if (loading || !user) {
-        router.push('/signin');
-      }
-
-    else return(
+    return(
         <div>
             <div className='w-full flex justify-center items-center gap-36 mb-96 text-stone-950 mt-28'>
               <div className='flex flex-col gap-10 items-start'>

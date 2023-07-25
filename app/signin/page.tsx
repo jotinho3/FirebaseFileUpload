@@ -1,7 +1,7 @@
 // pages/signin.tsx
 'use client'
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import firebase from 'firebase/compat/app'; // Update the import statement
 import { getAuth, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
@@ -25,9 +25,12 @@ const [user] = useAuthState(auth);
     signInWithPopup(auth, provider);
   };
 
-  if (user) {
-    router.push('/home');
-  }
+  useEffect(() => {
+    // Redirect the user to the '/home' route if already signed in
+    if (user) {
+      router.push('/home');
+    }
+  }, [user, router]);
 
   return (
     <button onClick={signInWithGoogle}>Sign In with Google</button>
