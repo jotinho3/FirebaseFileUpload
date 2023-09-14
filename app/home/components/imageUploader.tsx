@@ -62,7 +62,7 @@ const ImageUploader: React.FC<ImageUploaderProps> = ({ onUploadSuccess }) => {
   };
 
   return (
-    <div className="flex flex-row sm:flex-col ml-0 gap-2 sm:gap-6 w-1/4 sm:ml-[29rem] mt-3  ">
+    <div className="flex flex-row sm:flex-col ml-0 gap-2 sm:gap-6 w-1/4 sm:w-1/2 lg:w-1/3 sm:ml-[8rem] lg:ml-[29rem] mt-3  ">
       {!fileSelected ? (
         // Show the initial upload UI if no file is selected
         <label

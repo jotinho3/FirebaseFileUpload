@@ -122,7 +122,7 @@ const ImgGrid: React.FC<ImgGridProps> = ({ onUploadSuccess }) => {
   };
   
   return (
-    <div className=' mt-5 sm:mt-24 mb-3 flex gap-4 flex-wrap overflow-y-scroll max-h-[38rem] sm:max-h-[32rem]  max-w-full sm:max-w-full border-t-2 pt-6 border-rose-600 justify-center sm:justify-start' >
+    <div className=' mt-5 sm:mt-24 mb-3 flex gap-4 flex-wrap overflow-y-scroll max-h-[40rem] sm:max-h-[48rem] lg:max-h-[32rem]  max-w-full sm:max-w-full border-t-2 pt-6 border-rose-600 justify-center sm:justify-start' >
       <AnimatePresence>
       {isLoading && !isFetched ? (
         // Show skeleton loader while fetching
@@ -151,8 +151,8 @@ const ImgGrid: React.FC<ImgGridProps> = ({ onUploadSuccess }) => {
               width={400}
               height={400}          
               alt={imageNameExtractor(url)}
-              style={{ maxWidth: '350px', maxHeight: '400px' ,minWidth: '280px' }}
-              className='rounded-ss-2xl border-spacing-2.5 w-12  sm:min-w-[300px]'
+             
+              className='rounded-ss-2xl border-spacing-2.5 w-12 max-w-[350px] max-h-[400px] min-w-[270px] sm:min-w-[230px] lg:min-w-[280px]'
             />
 
                <div
