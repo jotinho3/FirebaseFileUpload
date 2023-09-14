@@ -11,6 +11,7 @@ import { storage } from '@/database/firebase'
 import { Trash } from 'phosphor-react';
 import Swal from 'sweetalert2'; // Import Sweet Alert 2
 import { motion, AnimatePresence, spring } from 'framer-motion';
+import Image from 'next/image';
 
 
 
@@ -71,6 +72,7 @@ const ImgGrid: React.FC<ImgGridProps> = ({ onUploadSuccess }) => {
         cancelButtonColor: '#3377dd',
         confirmButtonText: 'Yes, delete it!',
         background: 'rgb(8, 47, 73)'
+        
       });
 
       if (shouldDelete.isConfirmed) {
@@ -79,7 +81,14 @@ const ImgGrid: React.FC<ImgGridProps> = ({ onUploadSuccess }) => {
         fetchImages(); // Refresh the images after deletion
 
         // Show success message
-        Swal.fire('Deleted!', 'The image has been deleted.', 'success');
+        Swal.fire({
+          title: 'Deleted!',
+          text: 'The image was deleted.',
+          icon: 'success',
+          color: 'white',
+          padding: '3rem',
+          background: 'rgb(8, 47, 73)' 
+        });
       }
     } catch (error) {
       console.error('Error deleting image:', error);
@@ -94,6 +103,17 @@ const ImgGrid: React.FC<ImgGridProps> = ({ onUploadSuccess }) => {
   }, [onUploadSuccess]);
 
 
+
+  function imageNameExtractor(url: string) {
+
+    const parts = url.split('/');
+    const imageNameWithToken = parts[parts.length - 1];
+    const imageNameWithoutToken = imageNameWithToken.split('?')[0];
+
+    return imageNameWithoutToken
+  }
+
+
   console.log(user)
 
   const storageRefFromUrl = (url: string) => {
@@ -102,14 +122,16 @@ const ImgGrid: React.FC<ImgGridProps> = ({ onUploadSuccess }) => {
   };
   
   return (
-    <div className='mt-24' style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)' , gridTemplateRows: 'repeat(3, 1fr)', columnGap: '25px', rowGap:  '25px' }}>
+    <div className=' mt-5 sm:mt-24 mb-3 flex gap-4 flex-wrap overflow-y-scroll max-h-[38rem] sm:max-h-[32rem]  max-w-full sm:max-w-full border-t-2 pt-6 border-rose-600 justify-center sm:justify-start' >
       <AnimatePresence>
       {isLoading && !isFetched ? (
         // Show skeleton loader while fetching
-        <div className="w-full mt-20 h-100 flex justify-center items-center gap-10">
-          <div className="animate-pulse h-96 w-60 bg-gray-300 rounded" />
-          <div className="animate-pulse h-96 w-60 bg-gray-300 rounded" />
-          <div className="animate-pulse h-96 w-60 bg-gray-300 rounded" />
+        <div className="w-full h-100 flex flex-col sm:flex-row  justify-center items-center gap-8  ">
+          <div className="animate-pulse h-80 w-72  sm:w-1/5 bg-gray-300 rounded-ss-2xl" />
+          <div className="animate-pulse h-80 w-72 sm:w-1/5 bg-gray-300 rounded-ss-2xl" />
+          <div className="animate-pulse h-80 w-72 sm:w-1/5 bg-gray-300 rounded-ss-2xl" />
+          <div className="animate-pulse h-80 w-72 sm:w-1/5 bg-gray-300 rounded-ss-2xl" />
+          <div className="animate-pulse h-80 w-72 sm:w-1/5 bg-gray-300 rounded-ss-2xl" />
         </div>
       ) : (
         // Show images when fetching is completed
@@ -122,11 +144,15 @@ const ImgGrid: React.FC<ImgGridProps> = ({ onUploadSuccess }) => {
             exit={{ opacity: 0 }} // Animate to scale 0 when removed
             transition={{ duration: 1 }}
           >
-            <img
+
+           
+            <Image
               src={url}
-              alt="Uploaded"
-              style={{ maxWidth: '350px', maxHeight: '400px' ,minWidth: '300px' }}
-              className='rounded-ss-2xl border-spacing-2.5'
+              width={400}
+              height={400}          
+              alt={imageNameExtractor(url)}
+              style={{ maxWidth: '350px', maxHeight: '400px' ,minWidth: '280px' }}
+              className='rounded-ss-2xl border-spacing-2.5 w-12  sm:min-w-[300px]'
             />
 
                <div

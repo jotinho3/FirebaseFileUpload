@@ -14,6 +14,7 @@ import { auth } from '@/database/firebase';
 import ImgGrid from './components/imgGrid';
 
 
+
 import Lottie from 'lottie-react'
 import lottieData from '../../assets/upload_photos_gallery.json'
 
@@ -39,23 +40,24 @@ export default function Home() {
       };
 
     return(
-        <div>
-            <div className='w-full flex justify-center items-center gap-36 mb-96 text-stone-950 mt-28'>
+      
+        <div className='w-full'>
+            <div className='w-full flex sm:flex-row flex-col justify-center items-center  text-stone-950 '>
               <div className='flex flex-col gap-10 items-start'>
-                <h1 className='bold text-8xl'>Hello, this is your gallery!</h1>
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quo aut possimus in aspernatur voluptate id, reprehenderit veniam, fugiat natus distinctio doloribus odio quia quae. Possimus perferendis aliquam culpa dolores facilis?</p>
+                <h1 className='bold text-5xl sm:text-8xl text-center mt-6'>Hello, this is your gallery!</h1>
+                <p className='text-center'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quo aut possimus in aspernatur voluptate id, reprehenderit veniam</p>
               </div>
 
-              <div className='w-full '>
+              <div className='w-full'>
                 <Lottie animationData={lottieData} />
               </div>
 
             </div>
-            <ImageUploader onUploadSuccess={handleUploadSuccess}/>
-            <ImgGrid onUploadSuccess={uploadSuccess}/>
+          
             
           
         </div>
+        
 
     )
 }

@@ -6,6 +6,8 @@ import { getAuth } from 'firebase/auth';
 
 require('dotenv').config();
 
+console.log(process.env.FIREBASE_CONFIG)
+
 
 // Initialize Firebase
 export const app = initializeApp({

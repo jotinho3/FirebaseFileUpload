@@ -1,6 +1,6 @@
 import { ReactNode } from "react"
 import Header from "./components/Header"
-
+import LeftSidedAside from "./components/Aside"
 
 
 interface AppLayoutProps {
@@ -10,9 +10,11 @@ interface AppLayoutProps {
 export default function AppLayout({children}: AppLayoutProps) {
     return (
         <div>
+            
             <Header  />
-            <h1>Home Layout</h1>
-            <div className="w-2/3 m-auto ">
+            <div className="m-auto flex gap-1 sm:gap-8 ">
+                <LeftSidedAside />
+               
                {children}
             </div>
             
